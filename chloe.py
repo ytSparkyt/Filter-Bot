@@ -26,15 +26,13 @@ async def meme(ctx):
             embed.set_image(url = data[0]["data"]["children"][0]["data"]["url"])
             embed.set_footer(icon_url=author.avatar_url, text="| Fun Commands!")
 
-            await client.say(embed=embed)
-            
+            await client.say(embed=embed)            
 @meme.error
 async def cooldown_error(error, ctx):
     if isinstance(error, commands.CommandOnCooldown):
-        author = ctx.message.author
-        embed = discord.Embed(color=0x1434a3)
-        embed.add_field(name="Chill!", value="You can view these memes in 10 sec.")
-        embed.set_footer(icon_url=author.avatar_url, text="Fresh memes!")
+        remainder = divmod(error.retry_after, 10)
+        embed = discord.Embed(color=(random.randint(0, 0xffffff)))
+        embed.add_field(name="Slowdown :stuck_out_tongue_winking_eye: ", value=f"Cooldown: **{remainder}** \n Each Command: **1**", inline=False)
         await client.say(embed=embed)
         
 #CONFIRGURING
