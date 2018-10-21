@@ -27,7 +27,16 @@ async def meme(ctx):
             embed.set_footer(icon_url=author.avatar_url, text="| Fun Commands!")
 
             await client.say(embed=embed)
-
+            
+@meme.error
+async def cooldown_error(error, ctx):
+    if isinstance(error, commands.CommandOnCooldown):
+        author = ctx.message.author
+        embed = discord.Embed(color=0x1434a3)
+        embed.add_field(name="Chill!", value="You can view these memes in 10 sec.")
+        embed.set_footer(icon_url=author.avatar_url, text="Fresh memes!")
+        await client.say(embed=embed)
+        
 #CONFIRGURING
 
 
