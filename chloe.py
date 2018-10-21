@@ -28,5 +28,10 @@ async def meme(ctx):
 
             await client.say(embed=embed)
 
+#CONFIRGURING
+
+
+#MODERARION COMMANDS:
+  
     
 client.run(os.environ.get('BOT_TOKEN'))
